@@ -1,0 +1,42 @@
+ion-header{
+    ion-toolbar{
+        --background: #26f1ff;
+    }
+
+    ion-title{
+        margin-top: 40px;
+        margin-left: 30px;
+        padding-bottom: 20px;
+        color:white;
+    }
+
+    
+    ion-icon{
+        position: absolute;
+        left: 15px;
+        top: 38px;
+        font-size: 23px;
+        color: white;
+    }
+}
+
+
+ion-content{
+    ion-button{
+        --background: #26f1ff;
+        --box-shadow: none;
+        height: 40px;
+    }
+
+
+}
+
+ion-footer{
+    --background: white;
+
+    ion-toolbar{
+        --background: white;
+        color: black;
+    }
+   
+}
