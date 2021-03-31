@@ -39,7 +39,7 @@
   <img *ngIf="paymentList.length==0" src="assets/not found.gif" width="300px" style="margin-left: auto; margin-right: auto; display: block;"/>
   <div class="news-card" *ngIf="paymentList">
     <ion-card>
-    <ion-list *ngFor="let data of paymentList">
+    <ion-list *ngFor="let data of paymentList" (click)="showModal(data.image)">
         <ion-item>
 
           <ion-label>

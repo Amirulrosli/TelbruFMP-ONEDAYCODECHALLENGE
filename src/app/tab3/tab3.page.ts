@@ -66,16 +66,7 @@ export class Tab3Page implements OnInit {
 
   }
 
-  async showModal () {
-  
-    let modal = await this.modalCtrl.create({component: PicturePage
-    });
-    let me = this;
-    modal.onDidDismiss().then((data) => {
-      this.data = data['data'];
-    });
-    (await modal).present();
-  }
+
 
   updateBalance(){
 
@@ -85,6 +76,20 @@ export class Tab3Page implements OnInit {
 
   refresh(){
     this.payment();
+  }
+
+  async showModal(id){
+    let modal = await this.modalCtrl.create({component: PicturePage,
+      cssClass: 'share-css',
+      componentProps: {
+        image: id
+      }
+    });
+    let me = this;
+    modal.onDidDismiss().then((data) => {
+      this.data = data['data'];
+    });
+    (await modal).present();
   }
 
 
