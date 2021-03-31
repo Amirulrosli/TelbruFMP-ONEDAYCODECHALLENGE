@@ -1,0 +1,60 @@
+
+
+<ion-content>
+
+  <div class="news-back">
+
+    <ion-toolbar>
+      <ion-title>TOPUP</ion-title>
+    </ion-toolbar>
+
+  </div>
+
+  <ion-item lines="none">
+    <ion-label>
+      Date of Topup:
+    </ion-label>
+   </ion-item>
+
+   <ion-item>
+    <ion-input [(ngModel)]="datePayment" item-start type="date"></ion-input>
+   </ion-item>
+
+
+   <ion-item lines="none">
+    <ion-label>
+     Top-up For:
+    </ion-label>
+   </ion-item>
+
+   <ion-item>
+    <ion-select (ionChange)="topup()" [(ngModel)]="paymentMonth" placeholder="Select Month For Payment">
+      <ion-select-option value="20">120GB 30 Days for $20.00</ion-select-option>
+      <ion-select-option value="4">15GB 7 Days for $4.00</ion-select-option>
+      <ion-select-option value="8">35GB 14days for $8.00</ion-select-option>
+      <ion-select-option value="12">60GB 21 Days for $12.00</ion-select-option>
+
+    </ion-select>
+   </ion-item>
+
+
+   <ion-item lines="none">
+    <ion-label>
+     Total Price:
+    </ion-label>
+   </ion-item>
+
+   <ion-item>
+     <p>$</p>
+    <ion-input disabled [(ngModel)]="totalPayment" item-start type="number"></ion-input>
+   </ion-item>
+
+   <br>
+   <br>
+
+   <ion-button expand="block" class="submit" (click)="submit()">Create TopUP</ion-button>
+
+
+
+
+</ion-content>

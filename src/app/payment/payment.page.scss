@@ -1,0 +1,29 @@
+ion-header{
+    ion-toolbar{
+        --background:  #009da8;
+    }
+
+    ion-title{
+        margin-top: 40px;
+        margin-left: 35px;
+        padding-bottom: 20px;
+        color:white;
+    }
+
+    .arrow{
+        position: absolute;
+        left: 15px;
+        top: 38px;
+        font-size: 25px;
+        color: white;
+    }
+
+    .tick{
+        position: absolute;
+        right: 15px;
+        top: 40px;
+        font-size: 30px;
+        color: white;
+        font-weight: bolder;
+    }
+}

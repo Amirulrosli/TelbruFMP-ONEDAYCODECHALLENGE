@@ -1,0 +1,73 @@
+<ion-header>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="news-back">
+
+    <ion-toolbar>
+      <ion-title style="font-size: 16px;">
+        MY PAYMENT
+      </ion-title>
+
+      <ion-icon class="logout" (click)="signOut()" name="log-out-outline"></ion-icon>
+      <ion-icon class="update" (click)="updateBalance()" name="arrow-up-circle-outline"></ion-icon>
+    </ion-toolbar>
+
+    <ion-item lines="none">
+      <ion-icon name="person-circle"></ion-icon>
+      <ion-label>
+        {{profileName}}
+        <br>
+        <p style="color: white; margin-top: 10px; font-weight: lighter;">{{profileEmail}}</p>
+      </ion-label>
+     
+    </ion-item>
+
+  </div>
+  <ion-item *ngIf="profileRoles==true">
+    <ion-label>Select Payment List</ion-label>
+    <ion-select (ionChange)="change()" [(ngModel)]="type" placeholder="Select One">
+      <ion-select-option value="Personal">Personal</ion-select-option>
+      <ion-select-option value="All">All</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-datetime class="filterDate" placeholder="Filter date" [(ngModel)]="filterDate"></ion-datetime>
+  
+  <img *ngIf="paymentList.length==0" src="assets/not found.gif" width="300px" style="margin-left: auto; margin-right: auto; display: block;"/>
+  <div class="news-card" *ngIf="paymentList">
+    <ion-card>
+    <ion-list *ngFor="let data of paymentList">
+        <ion-item>
+
+          <ion-label>
+  
+              <h1 style="font-size: 15px;font-weight: bold;">{{data.username}}</h1>
+              <p style="font-size: 13px; color: #39dfeb;">{{data.paymentMonth}}</p>
+              <p style="font-size: 13px; color: #afafaf;">Ref: #{{data.ref}}</p>
+              <div class="bottom-text">
+                <p style="font-size: 13px;" class="date">{{data.datePayment}}</p>
+                
+              </div>
+             
+            
+  
+            </ion-label>
+
+            <ion-button class="author" fill="outline">Payment: ${{data.totalPayment}}</ion-button>
+
+
+          <ion-icon (click)="delete(data.id)" class="delete" name="close-outline"></ion-icon>
+
+        </ion-item>
+
+    </ion-list>
+
+  </ion-card>
+
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+    <ion-icon name="lock-closed"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item lines="none">
+      <ion-label>
+         First Name:
+      </ion-label>
+     </ion-item>
+  
+     <ion-item>
+      <ion-input [(ngModel)]="username" item-start type="text"></ion-input>
+     </ion-item>
+
+
+     <ion-item lines="none">
+      <ion-label>
+        Password:
+      </ion-label>
+     </ion-item>
+  
+     <ion-item>
+      <ion-input [(ngModel)]="password" item-start type="password"></ion-input>
+     </ion-item>
+
+  </ion-list>
+  <br>
+
+  <ion-button (click)="submit()" expand="block">Log In</ion-button>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-toolbar>
+
+    <div>
+      <p style="text-align: center;">Does not have an account? <a (click)="signup()">Click Here</a></p>
+    </div>
+
+  </ion-toolbar>
+ 
+</ion-footer>

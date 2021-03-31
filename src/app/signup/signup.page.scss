@@ -1,0 +1,48 @@
+ion-header{
+    ion-toolbar{
+        --background:  #009da8;
+    }
+
+    ion-title{
+        margin-top: 40px;
+        margin-left: 30px;
+        padding-bottom: 20px;
+        color:white;
+    }
+
+    
+    ion-icon{
+        position: absolute;
+        left: 15px;
+        top: 38px;
+        font-size: 23px;
+        color: white;
+    }
+}
+
+
+ion-content{
+    ion-button{
+        --background:   #009da8;
+        --box-shadow: none;
+        height: 40px;
+    }
+
+    ion-input{
+        background-color: rgba(216, 216, 216, 0.24);
+        --padding-start: 5px;
+        border-radius: 10px;
+    }
+
+
+}
+
+ion-footer{
+    --background: white;
+
+    ion-toolbar{
+        --background: white;
+        color: black;
+    }
+   
+}

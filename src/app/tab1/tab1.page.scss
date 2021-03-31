@@ -1,0 +1,82 @@
+
+    ion-toolbar{
+        --background: transparent;
+    }
+
+    ion-title{
+        margin-top: 40px;
+        padding-bottom: 20px;
+        color:white;
+    }
+
+    .makePayment{
+        position: absolute;
+        right: 15px;
+        top: 38px;
+        font-size: 30px;
+        color: white;
+    }
+
+
+    .filterDate{
+        margin-top: 15px;
+        background-color: rgb(235, 235, 235);
+        border-bottom: 1px solid #009da8;
+        width: 50%;
+        margin-left: 20px;
+    }
+
+.news-back{
+    background:  #009da8;
+    height:35%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+    ion-item{
+        --background: transparent;
+    }
+
+    .month{
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .caret{
+        position: absolute;
+        right: 25%;
+        color:white;
+    }
+
+    
+
+    h1{
+        font-size: 30px;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+    }
+
+  }
+
+
+  ion-item{
+    .author{
+        font-size: 12px;
+        color: #24bee8;
+        --border-radius: 30px;
+        --border-color: #24bee8;
+        margin-bottom: 10px;
+      }
+
+      ion-button{
+        --background: transparent;
+       
+    }
+
+
+  }
+
+
+ 
+
+ 

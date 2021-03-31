@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Balance</ion-title>
+    <ion-icon class="arrow" (click)="Back()" name="arrow-back-outline"></ion-icon>
+    <ion-icon (click)="submit()" class="tick" name="checkmark"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none">
+    <ion-label>
+      Current Balance: ${{totalbill}}
+    </ion-label>
+   </ion-item>
+
+   <ion-item>
+    <ion-input [(ngModel)]="datePayment" item-start type="date"></ion-input>
+   </ion-item>
+
+   <ion-item lines="none">
+    <ion-label>
+     Balance Change:
+    </ion-label>
+   </ion-item>
+
+   <ion-item>
+     <p>$</p>
+    <ion-input [(ngModel)]="totalPayment" item-start type="number"></ion-input>
+   </ion-item>
+
+   <ion-item lines="none">
+    <ion-label>
+     Balance Change For:
+    </ion-label>
+   </ion-item>
+
+   <ion-item>
+    <ion-select [(ngModel)]="paymentMonth" placeholder="Select Month For Payment">
+      <ion-select-option value="January">January</ion-select-option>
+      <ion-select-option value="February">February</ion-select-option>
+      <ion-select-option value="March">March</ion-select-option>
+      <ion-select-option value="April">April</ion-select-option>
+      <ion-select-option value="May">May</ion-select-option>
+      <ion-select-option value="June">June</ion-select-option>
+      <ion-select-option value="July">July</ion-select-option>
+      <ion-select-option value="August">August</ion-select-option>
+      <ion-select-option value="September">September</ion-select-option>
+      <ion-select-option value="October">October</ion-select-option>
+      <ion-select-option value="November">November</ion-select-option>
+      <ion-select-option value="December">December</ion-select-option>
+
+    </ion-select>
+   </ion-item>
+
+
+
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "telbruFMP",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
