@@ -35,7 +35,7 @@
 
 
   <ion-datetime class="filterDate" placeholder="Filter date" [(ngModel)]="filterDate"></ion-datetime>
-  
+  <ion-icon (click)="refresh()" class="refresh" name="refresh-outline"></ion-icon>
   <img *ngIf="paymentList.length==0" src="assets/not found.gif" width="300px" style="margin-left: auto; margin-right: auto; display: block;"/>
   <div class="news-card" *ngIf="paymentList">
     <ion-card>

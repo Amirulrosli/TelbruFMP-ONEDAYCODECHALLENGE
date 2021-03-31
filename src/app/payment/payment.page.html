@@ -53,6 +53,25 @@
     </ion-select>
    </ion-item>
 
+   <ion-item lines="none">
+    <ion-label>
+      Payment Proof (Evidence)
+    </ion-label>
+   </ion-item>
+
+   <ion-item>
+    
+     <br>
+      <ion-input style="color: black; " type="file" Placeholder="Proof of Payment" [(ngModel)]="proof" (change)="change($event)"></ion-input>
+    </ion-item>
+    <br>
+    <div *ngIf="percentage | async as pct">
+      Progress: {{ pct | number }}%
+      <ion-progress-bar value="{{ pct / 100 }}"></ion-progress-bar>
+    </div>
+    <br>
+    <p style="color: red; margin-left: 10px;font-size: 12px;">Please Wait until 100%</p>
+
 
 
 

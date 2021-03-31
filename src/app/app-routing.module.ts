@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'update-balance',
     loadChildren: () => import('./update-balance/update-balance.module').then( m => m.UpdateBalancePageModule)
+  },
+  {
+    path: 'picture',
+    loadChildren: () => import('./picture/picture.module').then( m => m.PicturePageModule)
   }
 ];
 @NgModule({

@@ -3,8 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore'
 import { Router } from '@angular/router';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { IonSelect, Platform } from '@ionic/angular';
+import { IonSelect, ModalController, Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { PicturePage } from '../picture/picture.page';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -29,11 +30,13 @@ export class Tab1Page implements OnInit {
   topCaret: boolean = false;
   filterDate: any;
   myDate = new Date();
+  data: any;
 
   constructor(private afstore: AngularFirestore,
     private router: Router,
     private platform: Platform,
     private datePipe: DatePipe,
+    private modalCtrl: ModalController,
     private statusBar: StatusBar) {
 
 
@@ -123,7 +126,7 @@ export class Tab1Page implements OnInit {
 
     this.topupSub= top.ref.where('month','==',date).get().then(snapshot=> {
       if (snapshot.empty){
-        return
+        return;
       }
 
       snapshot.forEach(doc=> {
@@ -134,6 +137,22 @@ export class Tab1Page implements OnInit {
 
   }
 
+
+
+  async showModal(id){
+    let modal = await this.modalCtrl.create({component: PicturePage,
+      cssClass: 'share-css',
+      componentProps: {
+        image: id
+      }
+    });
+    let me = this;
+    modal.onDidDismiss().then((data) => {
+      this.data = data['data'];
+    });
+    (await modal).present();
+  }
+  
   billMonthly(){
     this.billUsage = [];
 

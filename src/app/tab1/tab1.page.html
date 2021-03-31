@@ -52,6 +52,8 @@
         
       </ion-item>
 
+      <p style="color:gray; font-size:12px;margin-left:20px;" *ngIf="topupUsage.length==0 && topCaret==true">No Result Found</p>
+
       <div class="news-card" *ngIf="topupUsage && topCaret==true">
         <ion-list *ngFor="let data of topupUsage">
             <ion-item>
@@ -59,7 +61,7 @@
               <ion-label>
     
                 <h1 style="font-size: 15px;font-weight: bold;">{{data.username}}</h1>
-                <p style="font-size: 13px; color: #39dfeb;">{{data.description}}</p>
+                <p style="font-size: 13px; color: #009da8;">{{data.description}}</p>
                 <p style="font-size: 13px; color: #afafaf;">Ref: #{{data.month}}</p>
                 <div class="bottom-text">
                   <p style="font-size: 13px;" class="date">{{data.date}}</p>
@@ -90,14 +92,14 @@
       <ion-datetime class="filterDate" displayFormat="MM/DD/YYYY" placeholder="Filter date" value="filterDate" [(ngModel)]="filterDate"></ion-datetime>
       <img *ngIf="allPayment.length==0" src="assets/not found.gif" width="300px" style="margin-left: auto; margin-right: auto; display: block;"/>
       
-      <ion-list *ngFor="let data of allPayment">
+      <ion-list *ngFor="let data of allPayment" (click)="showModal(data.image)">
         
           <ion-item>
   
             <ion-label>
   
               <h1 style="font-size: 15px;font-weight: bold;">{{data.username}}</h1>
-              <p style="font-size: 13px; color: #39dfeb;">{{data.paymentMonth}}</p>
+              <p style="font-size: 13px; color: #009da8;">{{data.paymentMonth}}</p>
               <p style="font-size: 13px; color: #afafaf;">Ref: #{{data.ref}}</p>
               <div class="bottom-text">
                 <p style="font-size: 13px;" class="date">{{data.datePayment}}</p>

@@ -1,6 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, docChanges } from '@angular/fire/firestore';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-balance',
@@ -13,6 +15,13 @@ export class UpdateBalancePage implements OnInit {
   totalbill: any = 0;
   paymentMonth: any;
   longMonth: any;
+  dateBalance:any;
+  totalBalance: any;
+  currYear: any;
+  mybill: any;
+  specificBill:any;
+  deleteCollection: any = []
+  deleteData: any;
 
   constructor(
     private location: Location,
@@ -26,6 +35,8 @@ export class UpdateBalancePage implements OnInit {
     console.log(this.Date)
 
     this.paymentMonth = monthNames[(new Date().getMonth())].toString();
+    this.currYear = new Date().getFullYear().toString();
+
 
     this.afstore.doc(`totalBill/0`).valueChanges().subscribe(data=> {
       this.bill = data;
@@ -87,5 +98,88 @@ export class UpdateBalancePage implements OnInit {
   Back(){
     this.location.back()
   }
+
+  submit(){
+
+    try{
+
+      const totalBalance = this.totalBalance;
+      const dateBalance = this.dateBalance;
+      const paymentMonth = this.paymentMonth;
+
+      const currDate = this.paymentMonth+ this.currYear
+
+      this.afstore.doc(`bill/${currDate}`).valueChanges().subscribe(data=> {
+        this.mybill = data;
+        try{
+
+          this.specificBill = this.mybill.bill;
+
+        } catch (error) {
+
+          Swal.fire('Updating Balance Failed!','Please Check Balance Change For Month and Try Again!','error')
+          return;
+
+        }
+
+
+
+    })
+
+    this.afstore.collection('bill').ref.where('month','!=','0').get().then(snapshot=> {
+      if (snapshot.empty){
+        return;
+      }
+      
+        snapshot.forEach(doc=> {
+          this.deleteData = doc.data();
+          this.deleteCollection.push(this.deleteData)
+        })
+      
+    }).then(resp=> {
+      this.deleteColl(this.deleteCollection)
+
+      this.afstore.doc(`bill/${currDate}`).set({
+        bill: totalBalance,
+        month:currDate,
+        dateChange: dateBalance
+      })
+
+      this.afstore.doc(`totalBill/0`).update({
+        totalBill: totalBalance,
+        month: currDate
+      }).then (resp=> {
+
+        Swal.fire('Process Successful','Balance Has Been Updated','success')
+        this.dateBalance = "";
+        this.totalBalance = "";
+
+      })
+
+
+
+    },error=>{
+      Swal.fire('Process Unsuccessful','Please Check and try Again','error')
+    })
+
+
+
+
+
+  } catch (error){
+    Swal.fire('Updating Balance Failed!','Please Check and Try Again!','error')
+  }
+
+}
+
+
+deleteColl(data){
+  console.log(data)
+
+  for (let i = 0; i<data.length; i++){
+    this.afstore.doc(`bill/${data[i].month}`).delete();
+  }
+
+}
 
 }

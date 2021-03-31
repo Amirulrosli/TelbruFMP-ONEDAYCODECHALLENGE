@@ -6,7 +6,7 @@
     }
 
     ion-title{
-        margin-top: 40px;
+        margin-top: 43px;
         padding-bottom: 20px;
         color:white;
     }
@@ -15,7 +15,7 @@
     position: absolute;
     right: 20px;
     width: 30px;
-    top: 10px;
+    top: 12px;
     color: white;
 }
 
@@ -23,14 +23,23 @@
     position: absolute;
     right: 70px;
     width: 30px;
-    top: 10px;
+    top: 12px;
     color: white;
+}
+.refresh{
+    position:absolute;
+    right: 20px;
+    margin-top:-38px;
+    color: gray;
+    font-size: 28px;
 }
 
 .filterDate{
     margin-top: 15px;
+    width: 40%;
     background-color: rgb(235, 235, 235);
     border-bottom: 1px solid #009da8;
+    margin-left:20px;
 }
 .news-back{
     background:  #009da8;;

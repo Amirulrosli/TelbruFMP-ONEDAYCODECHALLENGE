@@ -2,9 +2,10 @@ import { Component,OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import swal from 'sweetalert';
 import Swal from 'sweetalert2';
+import { PicturePage } from '../picture/picture.page';
 import { UserService } from '../user.service';
 
 @Component({
@@ -22,18 +23,20 @@ export class Tab3Page implements OnInit {
   profileEmail: any;
   profileRoles: any = false;
   type:any;
+  data: any;
 
   constructor(
     private user: UserService,
     private afstore: AngularFirestore,
     private router: Router,
-    private ngFireAuth: AngularFireAuth
+    private ngFireAuth: AngularFireAuth,
+    private modalCtrl: ModalController
   ) {}
 
 
   ngOnInit(){
       this.paymentList = [];
-      this.payment();
+      
       const uid = localStorage.getItem('uid');
 
       try{
@@ -58,14 +61,30 @@ export class Tab3Page implements OnInit {
         alert(error)
       }
     
+      this.payment();
 
 
+  }
+
+  async showModal () {
+  
+    let modal = await this.modalCtrl.create({component: PicturePage
+    });
+    let me = this;
+    modal.onDidDismiss().then((data) => {
+      this.data = data['data'];
+    });
+    (await modal).present();
   }
 
   updateBalance(){
 
     this.router.navigate(['/update-balance'])
     
+  }
+
+  refresh(){
+    this.payment();
   }
 
 
@@ -100,19 +119,45 @@ export class Tab3Page implements OnInit {
   }
 
   delete(id){
-    console.log(id)
 
-    try{
+    Swal.fire({
 
-      
-    this.afstore.doc(`payment/${id}`).delete();
-    this.payment();
+      title: 'Are you sure?',
+      text: 'This process is irreversible.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, go ahead.',
+      cancelButtonText: 'No, let me think'
 
-    } catch (err) {
+    }).then(result=> {
 
-      alert(err);
+      if (result.value){
 
-    }
+        console.log(id)
+
+        try{
+    
+          
+        this.afstore.doc(`payment/${id}`).delete();
+        this.payment();
+        Swal.fire('Deleted','Data has successfully deleted','success')
+
+    
+        } catch (err) {
+    
+          alert(err);
+    
+        }
+
+      } else if (result.dismiss == Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Data is still in our database.',
+          'error'
+        )
+      }
+    })
+
 
   }
 
